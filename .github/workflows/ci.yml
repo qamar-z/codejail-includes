@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ['3.8']
-        toxenv: ["py38", "quality"]
+        python-version: ['3.11', '3.12']
+        toxenv: ["py311", "py312", "quality"]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +37,7 @@ jobs:
         run: tox
 
       - name: Run coverage
-        if: matrix.python-version == '3.8' && matrix.toxenv == 'py38'
+        if: matrix.python-version == '3.11' && matrix.toxenv == 'py311'
         uses: codecov/codecov-action@v4
         with:
           flags: unittests
